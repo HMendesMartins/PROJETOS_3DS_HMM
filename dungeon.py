@@ -12,28 +12,24 @@ inventario = []
 portas = [0,0,0]
 while True:
     portas.append(inventario)
-    portas[1] = rd.randint(1,6)
-    portas[2] = rd.randint(1,6)
-    escolha = int(input("Escolha 1-???, 2-Monstro ou 3: Saída!"))
+    portas[1] = rd.randint(1,3)
+    portas[2] = rd.randint(4,6)
+    escolha = int(input("Escolha 1-???, 2-Monstro ou 3: Saída!\n"))
     if (escolha == 1):
-        print("Você entra em uma sala cheia de portas!")
-        escolhaPorta = int(input("1-?? 2-?? 3-?? \nEscolha uma: "))
-        escolhaPorta =+3
-        if escolhaPorta == 4:
-            inventario.append("espada")
-            print("Voce acha uma espada e volta ao centro.")
-        elif escolhaPorta == 5:
-            inventario.append("cura")
-            print("Voce acha uma cura e volta ao centro.")
-        elif escolhaPorta == 6:
-            inventario.append("armadura")
-            print("Voce acha uma armadura e volta ao centro.")
+        print("Você entra em uma sala com algo no chão!")
+        ch = mapa[portas[2]]
+        inventario.append(ch)
+        print("Você achou um(a)", ch)
         continue
     elif (escolha == 2):
         if ("espada" in inventario or "cura" in inventario or "armadura" in inventario):
             print("Você sobreviveu!")
-            inventario.append("tesouro")
+            if ("espada" in inventario):
+                print("Você derrotou o monstro, mas saiu ferido!\n Gastou uma parte do tesouro para se curar!")    
+                inventario.append("tesouro")
             monstroCheck = True
+            if ("armadura" in ):
+
             continue
         else:
             print("GAME OVER")
@@ -44,5 +40,5 @@ while True:
             continue
         else:
             print("Você venceu com ", end="")
-            print(inventario.count["tesouro"])
+            print(inventario.count("tesouro"), "tesouro(s)")
             break
